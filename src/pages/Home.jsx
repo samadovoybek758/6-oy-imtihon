@@ -28,7 +28,6 @@ function Home() {
     },[])
 
 
-
    
 
     function filter_btn(event) {
@@ -54,8 +53,6 @@ function Home() {
     <div className='max-w-[1200px] mx-auto'>
         <div className='flex justify-between mb-32'>
             <input
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)} // Qidiruv maydoni o'zgarishiga o'zgartiring
              className='border border-solid border-gray-500 border-2-2 rounded-md px-3 py-2 w-[400px]' type="text" placeholder='search' />
             <div className='flex flex-row gap-3'>
                 <input ref={minRef} className='bg-gray-600 text-white border border-solid border-gray-500 border-2-2 px-2 py-2 rounded-md' type="number" placeholder='min page' />
