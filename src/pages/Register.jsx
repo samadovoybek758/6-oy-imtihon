@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import http from '../../axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 
 function Register() {
     const fnameRef = useRef();
@@ -89,15 +89,16 @@ function Register() {
         })
     }
   return (
-    <div className='max-w-72 mx-auto flex flex-col gap-4 px-4 py-4 rounded-md border border-solid border-gray-500 '>
-        <input ref={fnameRef} className='rounded-md border border-solid border-blue-400 px-3 ' type="text" placeholder='Enter firstname...' />
-        <input ref={lnameRef} className='rounded-md border border-solid border-blue-400 px-3 ' type="text" placeholder='Enter lastname...' />
-        <input ref={ageRef} className='rounded-md border border-solid border-blue-400 px-3 ' type="number" placeholder='Enter age...' />
-        <input ref={emailRef} className='rounded-md border border-solid border-blue-400 px-3 ' type="email" placeholder='Enter email...' />
-        <input ref={passwordRef} className='rounded-md border border-solid border-blue-400 px-3 ' type="password" placeholder='Enter password...' />
-        <input ref={conpasswordRef} className='rounded-md border border-solid border-blue-400 px-3 ' type="password" placeholder='Enter repassword...' />
+    <div className='max-w-md mx-auto p-6 bg-white rounded-lg shadow-md my-10 flex flex-col gap-4 px-4 py-4'>
+        <input ref={fnameRef} className='rounded-md border border-solid border-blue-400 px-6 py-1  ' type="text" placeholder='Enter firstname...' />
+        <input ref={lnameRef} className='rounded-md border border-solid border-blue-400 px-6 py-1  ' type="text" placeholder='Enter lastname...' />
+        <input ref={ageRef} className='rounded-md border border-solid border-blue-400 px-6 py-1' type="number" placeholder='Enter age...' />
+        <input ref={emailRef} className='rounded-md border border-solid border-blue-400 px-6 py-1  ' type="email" placeholder='Enter email...' />
+        <input ref={passwordRef} className='rounded-md border border-solid border-blue-400 px-6 py-1 ' type="password" placeholder='Enter password...' />
+        <input ref={conpasswordRef} className='rounded-md border border-solid border-blue-400 px-6 py-1 ' type="password" placeholder='Enter repassword...' />
 
-        <button onClick={reg_btn} className='bg-blue-400 text-white rounded-md border-none'>Register</button>
+        <button onClick={reg_btn} className='bg-blue-400 py-1 text-white rounded-md border-none'>Register</button>
+        <Link to={'/login'} className='text-blue-500'>Akkauntingiz bormi ?</Link>
     </div>
   )
 }

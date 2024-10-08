@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 function Home() {
     const [products,setproducts] = useState([]);
     const [bookes, setbookes] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
    
     const minRef = useRef()
     const maxRef = useRef()
@@ -25,6 +26,24 @@ function Home() {
         })
     },[])
 
+
+
+    useEffect(() => {
+        if (searchTerm) {
+            setloading(true);
+            http.get(`search?query= ${searchTerm}`)
+                .then(data => {
+                    setbookes(data.data);
+                    setloading(false);
+                })
+                .catch(err => {
+                    console.log(err);
+                    setloading(false);
+                });
+        } else {
+            setbookes([]); // Qidiruv bo'sh bo'lsa, bookes ni tozalang
+        }
+    }, [searchTerm]);
 
     function filter_btn(event) {
         event.preventDefault()
@@ -48,16 +67,19 @@ function Home() {
   return (
     <div className='max-w-[1200px] mx-auto'>
         <div className='flex justify-between mb-40'>
-            <input className='border border-solid border-blue-500 rounded-md px-3 py-2 w-[400px]' type="text" placeholder='search' />
+            <input
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)} // Qidiruv maydoni o'zgarishiga o'zgartiring
+             className='border border-solid border-gray-500 border-2-2 rounded-md px-3 py-2 w-[400px]' type="text" placeholder='search' />
             <div className='flex flex-row gap-3'>
-                <input ref={minRef} className='border border-solid border-blue-500 px-2 py-2 rounded-md' type="number" placeholder='min page' />
-                <input ref={maxRef} className='border border-solid border-blue-500 px-2 py-2 rounded-md' type="number" placeholder='max page' />
+                <input ref={minRef} className='bg-gray-600 text-white border border-solid border-gray-500 border-2-2 px-2 py-2 rounded-md' type="number" placeholder='min page' />
+                <input ref={maxRef} className='bg-gray-600 text-white border border-solid border-gray-500 border-2-2 px-2 py-2 rounded-md' type="number" placeholder='max page' />
                 <button onClick={filter_btn} className='bg-slate-500 px-12 py-2 rounded-md border-none text-white '>Filter</button>
             </div>
         </div>
         <div className=' flex flex-wrap mx-auto gap-4'>
         {loading ? (
-                    <p>Yuklanmoqda...</p> 
+                    <div className="mx-auto"><p className=''>Yuklanmoqda...</p></div> 
                 ) : (
                     <>
                         {bookes.length > 0 ? (

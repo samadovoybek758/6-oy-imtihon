@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import http from '../../axios';
+
 
 function Login() {
     const emailRef = useRef();
@@ -46,6 +47,7 @@ function Login() {
         .then(function (data) {
             console.log(data.data);
             if (data.data.accessToken) {
+                localStorage.setItem('token', data.data.accessToken)
                 navigate('/')
             }else(
                 alert(data.message)
@@ -58,10 +60,11 @@ function Login() {
     
 
   return (
-    <div className='max-w-72 mx-auto flex flex-col gap-4 px-4 py-4 rounded-md border border-solid border-gray-500 ' >
-         <input ref={emailRef} className='rounded-md border border-solid border-blue-400 px-3 ' type="email" placeholder='Enter email...' />
-         <input ref={passwordRef} className='rounded-md border border-solid border-blue-400 px-3 ' type="password" placeholder='Enter password...' />
-         <button onClick={log_btn} className='bg-blue-400 text-white rounded-md border-none'>Login</button>
+    <div className=' max-w-md mx-auto p-6 bg-white shadow-md my-20  flex flex-col gap-4 px-4 py-4 rounded-md' >
+         <input ref={emailRef} className='rounded-md border border-solid  border-blue-400 px-3 py-1 ' type="email" placeholder='Enter email...' />
+         <input ref={passwordRef} className='rounded-md border border-solid border-blue-400 px-3 py-1 ' type="password" placeholder='Enter password...' />
+         <button onClick={log_btn} className='bg-blue-400 text-white rounded-md border-none py-1'>Login</button>
+         <Link to={'/register'} className='text-blue-500'>Ro'yhatdan o'ting!</Link>
     </div>
   )
 
