@@ -3,6 +3,7 @@ import http from '../../axios'
 import Card from '../components/Card';
 import FilterCard from '../components/FilterCard';
 import { useNavigate } from 'react-router-dom';
+import loader from '../assets/loader.webp'
 
 function Home() {
     const [products,setproducts] = useState([]);
@@ -28,22 +29,7 @@ function Home() {
 
 
 
-    useEffect(() => {
-        if (searchTerm) {
-            setloading(true);
-            http.get(`search?query= ${searchTerm}`)
-                .then(data => {
-                    setbookes(data.data);
-                    setloading(false);
-                })
-                .catch(err => {
-                    console.log(err);
-                    setloading(false);
-                });
-        } else {
-            setbookes([]); // Qidiruv bo'sh bo'lsa, bookes ni tozalang
-        }
-    }, [searchTerm]);
+   
 
     function filter_btn(event) {
         event.preventDefault()
@@ -52,7 +38,7 @@ function Home() {
         http.get(`books/filter?minPages= ${minRef.current.value}&maxPages= ${maxRef.current.value}`)
         .then(data =>{
             setbookes(data.data)
-            console.log(data.data);
+           
             setloading(false)
         })
         .catch(err =>{
@@ -66,7 +52,7 @@ function Home() {
     }
   return (
     <div className='max-w-[1200px] mx-auto'>
-        <div className='flex justify-between mb-40'>
+        <div className='flex justify-between mb-32'>
             <input
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)} // Qidiruv maydoni o'zgarishiga o'zgartiring
@@ -79,7 +65,9 @@ function Home() {
         </div>
         <div className=' flex flex-wrap mx-auto gap-4'>
         {loading ? (
-                    <div className="mx-auto"><p className=''>Yuklanmoqda...</p></div> 
+                    <div className="mx-auto mt-[-30px]">
+                        <img className='w-[500px] mt-0' src={loader} alt="" />
+                    </div> 
                 ) : (
                     <>
                         {bookes.length > 0 ? (

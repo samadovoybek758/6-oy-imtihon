@@ -6,7 +6,7 @@ function Card(props) {
   return (
     <div onClick={() =>{Click_card(id)}} className='w-96 flex flex-col gap-4 border border-solid border-blue-300 rounded-md px-3 py-4 text-center' >
         <div className='max-w-[]'>
-          <img  className='mx-auto object-cover  w-full h-auto' src={thumbnailUrl} alt="" />
+          <img  className='mx-auto object-cover    w-[300px]' src={thumbnailUrl} alt="" />
         </div>
         <h1 className="text-2xl font-sans">Authors: {
             authors.length > 0 && authors.map(function (author) {

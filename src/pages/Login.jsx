@@ -45,7 +45,7 @@ function Login() {
             }
         })
         .then(function (data) {
-            console.log(data.data);
+            
             if (data.data.accessToken) {
                 localStorage.setItem('token', data.data.accessToken)
                 navigate('/')

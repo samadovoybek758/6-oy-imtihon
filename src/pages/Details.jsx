@@ -10,7 +10,6 @@ function Details() {
     
       http.get(`books/${params.id}`)
       .then((data) => {
-        console.log(data.data);
         setbooks(data.data);
       })
       .catch((err) => {
@@ -25,8 +24,8 @@ function Details() {
   return (
     <div className="max-w-[1200px] mx-auto">
         {books &&
-                <div className='max-w-[500px] mx-auto gap-5 border border-solid flex border-gray-600 rounded-md px-6 py-5 text-center' >
-                    <img  className=' cover ' src={books.thumbnailUrl} alt="" />
+                <div className='max-w-[700px] mx-auto gap-7 border border-solid flex border-emerald-600 rounded-md px-6 py-5 text-center' >
+                    <img  className=' w-80 ' src={books.thumbnailUrl} alt="" />
                     <div className="flex flex-col gap-4">
                     <h1 className="text-2xl">Authors: {
                         books.authors.length > 0 && books.authors.map(function (author) {

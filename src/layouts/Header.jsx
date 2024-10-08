@@ -1,12 +1,14 @@
 import React from "react";
 import logo from "../assets/open-book.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Header({ children }) {
-
+  const navigate = useNavigate()
   function log_out(e) {
     e.preventDefault()
     localStorage.removeItem('token')
+    navigate('/login')
+
   }
   return (
     <>
